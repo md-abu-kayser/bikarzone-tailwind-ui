@@ -1,57 +1,210 @@
 <!DOCTYPE html>
-<!----------------------------- Started Simple Tailwind CSS & Tailwind kit daisyUI Basic Project  -------------------------------->
 <html lang="en" data-theme="light">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>daisyUI.com</title>
-    <!-- Google Fonts CDN -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bike Web Title -->
+    <title>Bikar Zone | World-Class Bike UI</title>
+    <!-- CSS Style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <!-- daisyUI Fonts CDN -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .font-family {
-        font-family: "Poppins", sans-serif;
-      }
-    </style>
-    <!-- Custom Tailwind component -->
+    <!-- daisyUI Component CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.1/dist/full.css"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
+        darkMode: ["class", '[data-theme="dark"]'],
         theme: {
           extend: {
             colors: {
               "bike-primary": "#E76F51",
-              "primary-bg": "rgba(231, 111, 81, 0.1)",
+              "bike-secondary": "#FFB4A2",
+              "accent-plate": "rgba(255,255,255,0.06)",
+            },
+            keyframes: {
+              wiggle: {
+                "0%,100%": { transform: "rotate(-2deg)" },
+                "50%": { transform: "rotate(2deg)" },
+              },
+              floaty: {
+                "0%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-10px)" },
+                "100%": { transform: "translateY(0px)" },
+              },
+            },
+            animation: {
+              wiggle: "wiggle 2s ease-in-out infinite",
+              floaty: "floaty 6s ease-in-out infinite",
             },
           },
         },
+        plugins: [
+          function ({ addUtilities }) {
+            addUtilities({
+              ".backdrop-soft": {
+                "backdrop-filter": "blur(6px)",
+                "-webkit-backdrop-filter": "blur(6px)",
+              },
+            });
+          },
+        ],
       };
     </script>
   </head>
-  <body class="font-family">
-    <!-- Header Section -->
-    <header class="md:container mx-auto">
-      <!-- navbar -->
-      <nav>
-        <div class="navbar bg-base-100 shadow-sm">
-          <div class="flex-1">
-            <div class="dropdown">
-              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+
+  <body class="bg-base-100 text-base-content antialiased">
+    <!-- Page wrapper -->
+    <div class="min-h-screen flex flex-col">
+      <div class="w-full py-2 border-b border-base-200">
+        <div class="container-max flex items-center justify-between gap-3">
+          <div class="text-sm text-gray-500 hidden sm:block">
+            World-Class UI kit | HTML5 + CSS3 + Tailwind + daisyUI
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="hidden sm:flex items-center gap-2">
+              <span class="text-xs muted">Theme</span>
+              <div class="flex items-center gap-1">
+                <button
+                  class="btn btn-ghost btn-sm rounded-full focus-ring"
+                  data-theme-switch="light"
+                  aria-label="light theme"
+                >
+                  Light
+                </button>
+                <button
+                  class="btn btn-ghost btn-sm rounded-full focus-ring"
+                  data-theme-switch="cupcake"
+                  aria-label="cupcake theme"
+                >
+                  Cupcake
+                </button>
+                <button
+                  class="btn btn-ghost btn-sm rounded-full focus-ring"
+                  data-theme-switch="emerald"
+                  aria-label="emerald theme"
+                >
+                  Emerald
+                </button>
+                <button
+                  class="btn btn-ghost btn-sm rounded-full focus-ring"
+                  data-theme-switch="synthwave"
+                  aria-label="synthwave theme"
+                >
+                  Synthwave
+                </button>
+                <button
+                  class="btn btn-ghost btn-sm rounded-full focus-ring"
+                  data-theme-switch="dark"
+                  aria-label="dark theme"
+                >
+                  Dark
+                </button>
+              </div>
+            </div>
+
+            <!-- Mobile Theme Dropdown -->
+            <div class="sm:hidden">
+              <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-ghost btn-sm">Theme</label>
+                <ul
+                  tabindex="0"
+                  class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40"
+                >
+                  <li><a data-theme-switch="light">Light</a></li>
+                  <li><a data-theme-switch="cupcake">Cupcake</a></li>
+                  <li><a data-theme-switch="emerald">Emerald</a></li>
+                  <li><a data-theme-switch="synthwave">Synthwave</a></li>
+                  <li><a data-theme-switch="dark">Dark</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header and Navbar -->
+      <header
+        class="sticky top-0 z-40 bg-base-100/80 backdrop-soft border-b border-base-200"
+      >
+        <div class="container-max flex items-center justify-between py-4">
+          <div class="flex items-center gap-4">
+            <a href="#" class="flex items-center gap-3">
+              <div
+                class="g-border p-1 w-12 h-12 flex items-center justify-center"
+              >
+                <svg
+                  class="w-8 h-8"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 12h4l3-8 4 16 3-8h4"
+                    stroke="#fff"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <span class="text-xl font-bold">Bikar Zone</span>
+            </a>
+            <span class="hidden md:inline text-sm text-gray-500"
+              >Premium bikes - curated designs</span
+            >
+          </div>
+
+          <!-- Desktop nav -->
+          <nav class="hidden lg:flex items-center gap-3">
+            <a class="btn btn-ghost btn-sm" href="#home">Home</a>
+            <a class="btn btn-ghost btn-sm" href="#shop">Shop</a>
+            <a class="btn btn-ghost btn-sm" href="#latest">Latest</a>
+            <a class="btn btn-ghost btn-sm" href="#faq">FAQ</a>
+            <a class="btn btn-ghost btn-sm" href="#contact">Contact</a>
+          </nav>
+
+          <!-- Search, Login and Mobile Menu -->
+          <div class="flex items-center gap-3">
+            <div class="hidden md:block">
+              <label class="input-group">
+                <input
+                  type="text"
+                  placeholder="Search bikes..."
+                  class="input input-sm input-bordered"
+                  aria-label="search"
+                />
+                <button class="btn btn-sm">Search</button>
+              </label>
+            </div>
+
+            <div class="hidden md:block">
+              <a class="btn btn-outline btn-sm">Login</a>
+            </div>
+
+            <!-- Mobile menu -->
+            <div class="lg:hidden">
+              <button
+                id="mobileMenuBtn"
+                class="btn btn-ghost"
+                aria-label="open menu"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
+                  class="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -60,503 +213,698 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile drawer -->
+        <div id="mobileDrawer" class="fixed inset-0 z-50 hidden">
+          <div
+            class="absolute inset-0 bg-black/40"
+            id="mobileDrawerCloseArea"
+          ></div>
+          <div
+            class="absolute right-0 top-0 w-80 max-w-full h-full bg-base-100 shadow-2xl p-6"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                <div
+                  class="g-border p-1 w-10 h-10 flex items-center justify-center"
+                >
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M3 12h4l3-8 4 16 3-8h4"
+                      stroke="#fff"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-bold">Bikar Zone</div>
+                  <div class="text-xs muted">Explore The Collection</div>
+                </div>
+              </div>
+              <button id="mobileCloseBtn" class="btn btn-ghost">Close</button>
+            </div>
+            <nav class="flex flex-col gap-3">
+              <a class="btn btn-ghost justify-start" href="#home">Home</a>
+              <a class="btn btn-ghost justify-start" href="#shop">Shop</a>
+              <a class="btn btn-ghost justify-start" href="#latest">Latest</a>
+              <a class="btn btn-ghost justify-start" href="#faq">FAQ</a>
+              <a class="btn btn-ghost justify-start" href="#contact">Contact</a>
+              <div class="divider"></div>
+              <a class="btn btn-outline">Login</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main content -->
+      <main class="flex-1">
+        <!-- HERO -->
+        <section id="home" class="container-max py-12 lg:py-20">
+          <div class="grid lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div class="badge badge-lg badge-primary badge-pill">
+                New Collection in 2025
+              </div>
+              <h1
+                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight"
+              >
+                Ride the Future -
+                <span class="text-bike-primary">Bikar Zone</span>
+              </h1>
+              <p class="text-gray-600 max-w-2xl">
+                An elegant, performance-first collection of motorcycles and
+                scooters - crafted for riders who love design and engineered for
+                real roads. Explore curated bikes, accessories and special
+                releases.
+              </p>
+
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="#shop"
+                  class="btn btn-lg btn-shimmer bg-bike-primary text-white px-6 py-4 shadow-lg"
+                  >Shop Collection</a
+                >
+                <a href="#latest" class="btn btn-ghost btn-lg"
+                  >Explore Latest</a
+                >
+                <span class="text-sm muted self-center ml-2"
+                  >Free shipping on selected models</span
+                >
+              </div>
+
+              <!-- Features Row -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                <div class="p-4 rounded-lg bg-base-200 flex items-start gap-3">
+                  <div
+                    class="w-12 h-12 rounded-lg flex items-center justify-center bg-bike-secondary text-white"
+                  ></div>
+                  <div>
+                    <div class="font-semibold">Fast Delivery</div>
+                    <div class="text-sm muted">2-4 days in selected cities</div>
+                  </div>
+                </div>
+                <div class="p-4 rounded-lg bg-base-200 flex items-start gap-3">
+                  <div
+                    class="w-12 h-12 rounded-lg flex items-center justify-center bg-accent text-white"
+                  ></div>
+                  <div>
+                    <div class="font-semibold">Service Warranty</div>
+                    <div class="text-sm muted">6 months standard coverage</div>
+                  </div>
+                </div>
+                <div class="p-4 rounded-lg bg-base-200 flex items-start gap-3">
+                  <div
+                    class="w-12 h-12 rounded-lg flex items-center justify-center bg-base-300 text-white"
+                  ></div>
+                  <div>
+                    <div class="font-semibold">Curated Selection</div>
+                    <div class="text-sm muted">Only top-rated models</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 text-sm text-gray-500">
+                Project:
+                <strong
+                  >World-Class Bike UI | HTML5 + CSS3 + Tailwind +
+                  daisyUI</strong
+                >
+              </div>
+            </div>
+
+            <!-- Hero visual -->
+            <div class="lg:col-span-5 relative">
+              <div class="hero-spot p-6 rounded-xl shadow-xl">
+                <div class="relative overflow-hidden rounded-xl">
+                  <img
+                    src="images/bike/bike1.png"
+                    alt="Motorbike"
+                    class="w-full object-cover h-72 sm:h-96 img-reveal"
+                  />
+
+                  <!-- Floating Shapes -->
+                  <div
+                    class="float-shape"
+                    style="
+                      width: 140px;
+                      height: 140px;
+                      right: -20px;
+                      top: -24px;
+                      background: linear-gradient(90deg, #e76f51, #ffb4a2);
+                    "
+                  ></div>
+                  <div
+                    class="float-shape"
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      left: -10px;
+                      bottom: -10px;
+                      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+                    "
+                  ></div>
+
+                  <!-- stats overlay -->
+                  <div
+                    class="absolute left-4 bottom-4 p-4 rounded-lg bg-base-100/80 backdrop-blur-sm shadow-lg w-[calc(100%-2rem)]"
+                  >
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <div class="text-sm muted">Top speed</div>
+                        <div class="font-bold text-xl">220 km/h</div>
+                      </div>
+                      <div class="text-right">
+                        <div class="text-sm muted">Range</div>
+                        <div class="font-bold text-xl">420 km</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Shop and Featured Grid -->
+        <section id="shop" class="container-max py-12 lg:py-20">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h2 class="text-2xl font-bold">Featured Bikes</h2>
+              <p class="text-sm muted">Handpicked for design and performance</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="btn btn-sm">All</button>
+              <button class="btn btn-sm btn-ghost">Superbikes</button>
+              <button class="btn btn-sm btn-ghost">Scooters</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <article
+              class="card card-compact bg-base-100 shadow card-frost p-4 rounded-lg reveal-stagger"
+              data-delay="0"
+            >
+              <figure class="rounded-lg overflow-hidden">
+                <img
+                  src="images/bike/bike2.png"
+                  alt="Ducati"
+                  class="w-full h-56 object-cover img-reveal"
+                />
+              </figure>
+              <div class="card-body p-4">
+                <h3 class="text-xl font-semibold">Bike XDIAVEL S-73</h3>
+                <p class="text-sm muted">
+                  Modern cruiser with a muscular profile and premium handling.
+                </p>
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="badge badge-outline">Sport</div>
+                    <div class="text-lg font-bold">$5,999</div>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary btn-sm">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article
+              class="card card-compact bg-base-100 shadow card-frost p-4 rounded-lg reveal-stagger"
+              data-delay="120"
+            >
+              <figure class="rounded-lg overflow-hidden">
+                <img
+                  src="images/bike/bike4.png"
+                  alt="Honda"
+                  class="w-full h-56 object-cover img-reveal"
+                />
+              </figure>
+              <div class="card-body p-4">
+                <h3 class="text-xl font-semibold">2025 Honda CBR500R</h3>
+                <p class="text-sm muted">
+                  Balanced daily rider with sporty ergonomics and efficient
+                  engine.
+                </p>
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="badge badge-outline">Street</div>
+                    <div class="text-lg font-bold">$7,499</div>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary btn-sm">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article
+              class="card card-compact bg-base-100 shadow card-frost p-4 rounded-lg reveal-stagger"
+              data-delay="240"
+            >
+              <figure class="rounded-lg overflow-hidden">
+                <img
+                  src="images/bike/bike3.png"
+                  alt="Yamaha"
+                  class="w-full h-56 object-cover img-reveal"
+                />
+              </figure>
+              <div class="card-body p-4">
+                <h3 class="text-xl font-semibold">Ride-On R15 V4</h3>
+                <p class="text-sm muted">
+                  Lightweight track-inspired machine with aggressive styling.
+                </p>
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="badge badge-outline">Race</div>
+                    <div class="text-lg font-bold">$5,199</div>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary btn-sm">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article
+              class="card card-compact bg-base-100 shadow card-frost p-4 rounded-lg reveal-stagger"
+              data-delay="360"
+            >
+              <figure class="rounded-lg overflow-hidden">
+                <img
+                  src="images/bike/bike6.png"
+                  alt="Scooter"
+                  class="w-full h-56 object-cover img-reveal"
+                />
+              </figure>
+              <div class="card-body p-4">
+                <h3 class="text-xl font-semibold">CityGlide Scooter</h3>
+                <p class="text-sm muted">
+                  Efficient urban commuter with nimble handling and smart
+                  storage.
+                </p>
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="badge badge-outline">Urban</div>
+                    <div class="text-lg font-bold">$1,299</div>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary btn-sm">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article
+              class="card card-compact bg-base-100 shadow card-frost p-4 rounded-lg reveal-stagger"
+              data-delay="480"
+            >
+              <figure class="rounded-lg overflow-hidden">
+                <img
+                  src="images/bike/bike5.png"
+                  alt="Custom"
+                  class="w-full h-56 object-cover img-reveal"
+                />
+              </figure>
+              <div class="card-body p-4">
+                <h3 class="text-xl font-semibold">Bike ERQ34 C11</h3>
+                <p class="text-sm muted">
+                  Modern retro build with custom finishing and premium parts.
+                </p>
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="badge badge-outline">Custom</div>
+                    <div class="text-lg font-bold">$9,999</div>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary btn-sm">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article
+              class="card card-compact bg-base-100 shadow card-frost p-4 rounded-lg reveal-stagger"
+              data-delay="600"
+            >
+              <figure class="rounded-lg overflow-hidden">
+                <img
+                  src="images/bike/bike7.png"
+                  alt="Concept"
+                  class="w-full h-56 object-cover img-reveal"
+                />
+              </figure>
+              <div class="card-body p-4">
+                <h3 class="text-xl font-semibold">Concept EV Racer</h3>
+                <p class="text-sm muted">
+                  Silent powertrain with instant torque and futuristic aero.
+                </p>
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="badge badge-outline">EV</div>
+                    <div class="text-lg font-bold">$4,999</div>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary btn-sm">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Latest Bikes-->
+        <section id="latest" class="container-max py-12 lg:py-20">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h2 class="text-2xl font-bold">Latest Bike Releases</h2>
+              <p class="text-sm muted">Fresh drops and limited editions</p>
+            </div>
+            <div>
+              <a class="btn btn-sm btn-outline" href="#">View All Releases</a>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            <div class="rounded-xl overflow-hidden relative">
+              <img
+                src="images/bike/bike3.png"
+                alt="Limited"
+                class="w-full h-80 object-cover"
+              />
+              <div
+                class="absolute left-6 bottom-6 p-6 rounded-lg bg-base-100/80 backdrop-blur-sm shadow-lg"
+              >
+                <div class="text-sm muted">Limited edition</div>
+                <h3 class="text-2xl font-bold">R15 V4 - Midnight Edition</h3>
+                <p class="mt-2 muted max-w-md">
+                  A special collaboration with top custom shops - only 100 units
+                  worldwide.
+                </p>
+                <div class="mt-4">
+                  <a class="btn btn-primary">Reserve</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 gap-6">
+              <div class="rounded-xl overflow-hidden relative">
+                <img
+                  src="images/bike/bike9.png"
+                  alt="Cafe"
+                  class="w-full h-40 object-cover"
+                />
+                <div class="p-4">
+                  <h4 class="font-semibold">Cafe Racer Bike</h4>
+                  <p class="text-sm muted">
+                    Short-run builds inspired by classic racers.
+                  </p>
+                </div>
+              </div>
+              <div class="rounded-xl overflow-hidden relative">
+                <img
+                  src="images/bike/bike8.png"
+                  alt="Trail"
+                  class="w-full h-40 object-cover"
+                />
+                <div class="p-4">
+                  <h4 class="font-semibold">Trail Adventure Series Bike</h4>
+                  <p class="text-sm muted">
+                    Rugged geometry built for mixed terrain.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="container-max py-12 lg:py-20">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold">Happy Clients Says</h2>
+            <p class="text-sm muted">Stories from real riders</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <blockquote class="p-6 rounded-xl bg-base-200">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="avatar">
+                  <div class="w-14 rounded-full">
+                    <img src="images/client/user-1.png" />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-bold">Regina Miles</div>
+                  <div class="text-sm muted">Banker</div>
+                </div>
+              </div>
+              <p class="text-sm muted">
+                "The R15 changed my commute - so responsive, looks incredible.
+                Support team was very helpful with servicing questions."
+              </p>
+            </blockquote>
+            <blockquote class="p-6 rounded-xl bg-base-200">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="avatar">
+                  <div class="w-14 rounded-full">
+                    <img src="images/client/user-2.jpg" />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-bold">Md Abu Kayser</div>
+                  <div class="text-sm muted">Creative Director</div>
+                </div>
+              </div>
+              <p class="text-sm muted">
+                "I loved the limited edition drop - quality and finish were top
+                notch. Riding it around the city turns heads."
+              </p>
+            </blockquote>
+            <blockquote class="p-6 rounded-xl bg-base-200">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="avatar">
+                  <div class="w-14 rounded-full">
+                    <img src="images/client/user-3.png" />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-bold">Samira Noor</div>
+                  <div class="text-sm muted">Instructor</div>
+                </div>
+              </div>
+              <p class="text-sm muted">
+                "Finally an accessible UI and transparent specs. The range
+                claims were surprisingly accurate for my daily route."
+              </p>
+            </blockquote>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="container-max py-12 lg:py-20">
+          <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="collapse collapse-arrow">
+              <input type="checkbox" />
+              <div class="collapse-title text-lg font-medium">
+                How do I create an account?
+              </div>
+              <div class="collapse-content">
+                Click the "Login" button at the top-right and choose "Sign up" -
+                we support email, Google and GitHub OAuth.
+              </div>
+            </div>
+            <div class="collapse collapse-arrow">
+              <input type="checkbox" />
+              <div class="collapse-title text-lg font-medium">
+                What is the return policy?
+              </div>
+              <div class="collapse-content">
+                You can return most unused products within 14 days for a full
+                refund. Check our returns page for exceptions.
+              </div>
+            </div>
+            <div class="collapse collapse-arrow">
+              <input type="checkbox" />
+              <div class="collapse-title text-lg font-medium">
+                Do you ship internationally?
+              </div>
+              <div class="collapse-content">
+                Yes - shipping times and duties vary by region. Shipping will be
+                calculated at checkout.
+              </div>
+            </div>
+            <div class="collapse collapse-arrow">
+              <input type="checkbox" />
+              <div class="collapse-title text-lg font-medium">
+                Any warranty available?
+              </div>
+              <div class="collapse-content">
+                All new bikes include a minimum 6-month warranty. Extended plans
+                are available at checkout.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Strip -->
+        <section class="py-12 bg-base-200">
+          <div
+            class="container-max flex flex-col md:flex-row items-center justify-between gap-4"
+          >
+            <div>
+              <h3 class="text-xl font-bold">Ready to ride?</h3>
+              <p class="muted">
+                Sign up for early access to limited edition drops and offers.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+              <input
+                type="email"
+                placeholder="Your email"
+                class="input input-bordered w-full md:w-80"
+              />
+              <button class="btn btn-primary">Join List</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="container-max py-12 lg:py-20">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-2xl font-bold">Contact</h3>
+              <p class="muted">
+                Have a question? Reach our support team or visit one of our
+                showrooms.
+              </p>
+
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-4 rounded-lg bg-base-200">
+                  <div class="font-semibold">Support</div>
+                  <div class="text-sm muted">abu.kayser.official@gmail.com</div>
+                </div>
+                <div class="p-4 rounded-lg bg-base-200">
+                  <div class="font-semibold">Showroom</div>
+                  <div class="text-sm muted">
+                    Open Mon-Sat, 10:00 AM - 8:00 PM
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold">Visit Our Showroom</h3>
+              <div class="mt-4 rounded-lg overflow-hidden">
+                <iframe
+                  class="w-full h-56"
+                  loading="lazy"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.902345459603!2d90.41251801498123!3d23.810332594567776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf2d1d1b1b11%3A0x9b8a1a1b1a1a1a1a!2sDhaka!5e0!3m2!1sen!2sbd!4v1600000000000!5m2!1sen!2sbd"
+                  frameborder="0"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer-gradient text-white mt-8">
+        <div class="container-max py-10 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="g-border p-1 w-12 h-12 flex items-center justify-center"
+              >
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3 12h4l3-8 4 16 3-8h4"
+                    stroke="#fff"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   />
                 </svg>
               </div>
-              <ul
-                tabindex="0"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <li><a>Home</a></li>
-                <li><a>Shop</a></li>
-                <li><a>News</a></li>
-                <li><a>Contact</a></li>
-              </ul>
+              <div>
+                <div class="font-bold">Bikar Zone</div>
+                <div class="text-sm muted">World-Class Bike UI</div>
+              </div>
             </div>
-            <a class="font-bold text-2xl">Bikar Zone</a>
+            <p class="muted">
+              Designed with - HTML5, CSS3, TailwindCSS and daisyUI. Responsive
+              and accessible components.
+            </p>
           </div>
-          <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal px-1">
-              <li><a>Home</a></li>
-              <li><a>Shop</a></li>
-              <li><a>News</a></li>
-              <li><a>Contact</a></li>
+
+          <div>
+            <h4 class="font-semibold mb-2">Products</h4>
+            <ul class="space-y-2 text-sm muted">
+              <li><a>New Releases</a></li>
+              <li><a>Collections</a></li>
+              <li><a>Limited Editions</a></li>
             </ul>
           </div>
-          <div class="">
-            <a class="btn bg-bike-primary text-white">Login</a>
-          </div>
-        </div>
-      </nav>
-      <!-- daisyUI Carousel Slider -->
-      <div class="carousel w-full bg-primary-bg lg:h-[550px]">
-        <!-- Slider 01 -->
-        <div id="slide1" class="carousel-item relative w-full">
-          <!-- slider content -->
-          <div class="flex flex-col lg:flex-row p-16 lg:p-24">
-            <!-- text content -->
-            <div class="flex-1 space-y-7">
-              <h2 class="text-3xl lg:text-5xl font-bold">
-                Ride-on R15 V4 <br />
-                with Smile
-              </h2>
-              <p class="rgba(0, 0, 0, 0.8)">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-              </p>
-              <button class="btn bg-bike-primary text-white px-3 py-5">
-                Purchase
-              </button>
-            </div>
-            <!-- image content -->
-            <div class="flex-1">
-              <img src="images/slider/bike1.png" class="w-[400px]" />
-            </div>
-          </div>
-          <div
-            class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-          >
-            <a href="#slide4" class="btn btn-circle">❮</a>
-            <a href="#slide2" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-        <!-- Slider 02 -->
-        <div id="slide2" class="carousel-item relative w-full">
-          <!-- slider content -->
-          <div class="flex flex-col lg:flex-row p-16 lg:p-24">
-            <!-- text content -->
-            <div class="flex-1 space-y-7">
-              <h2 class="text-3xl lg:text-5xl font-bold">
-                Ride-on R15 V4 <br />
-                with Smile
-              </h2>
-              <p class="rgba(0, 0, 0, 0.8)">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-              </p>
-              <button class="btn bg-bike-primary text-white px-3 py-5">
-                Purchase
-              </button>
-            </div>
-            <!-- image content -->
-            <div class="flex-1">
-              <img src="images/slider/bike2.png" class="w-[400px]" />
-            </div>
-          </div>
-          <div
-            class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-          >
-            <a href="#slide1" class="btn btn-circle">❮</a>
-            <a href="#slide3" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-        <!-- Slider 03 -->
-        <div id="slide3" class="carousel-item relative w-full">
-          <!-- slider content -->
-          <div class="flex flex-col lg:flex-row p-16 lg:p-24">
-            <!-- text content -->
-            <div class="flex-1 space-y-7">
-              <h2 class="text-3xl lg:text-5xl font-bold">
-                Ride-on R15 V4 <br />
-                with Smile
-              </h2>
-              <p class="rgba(0, 0, 0, 0.8)">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-              </p>
-              <button class="btn bg-bike-primary text-white px-3 py-5">
-                Purchase
-              </button>
-            </div>
-            <!-- image content -->
-            <div class="flex-1">
-              <img src="images/slider/bike3.png" class="w-[400px]" />
-            </div>
-          </div>
-          <div
-            class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-          >
-            <a href="#slide2" class="btn btn-circle">❮</a>
-            <a href="#slide4" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-        <!-- Slider 04 -->
-        <div id="slide4" class="carousel-item relative w-full">
-          <!-- slider content -->
-          <div class="flex flex-col lg:flex-row p-16 lg:p-24">
-            <!-- text content -->
-            <div class="flex-1 space-y-7">
-              <h2 class="text-3xl lg:text-5xl font-bold">
-                Ride-on R15 V4 <br />
-                with Smile
-              </h2>
-              <p class="rgba(0, 0, 0, 0.8)">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-              </p>
-              <button class="btn bg-bike-primary text-white px-3 py-5">
-                Purchase
-              </button>
-            </div>
-            <!-- image content -->
-            <div class="flex-1">
-              <img src="images/slider/bike4.png" class="w-[400px]" />
-            </div>
-          </div>
-          <div
-            class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-          >
-            <a href="#slide3" class="btn btn-circle">❮</a>
-            <a href="#slide1 " class="btn btn-circle">❯</a>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- Main Section -->
-    <main class="md:container mx-auto">
-      <!-- Feature Bike Section -->
-      <section class="my-24">
-        <div class="flex justify-center items-center text-center">
+
           <div>
-            <h2 class="font-semibold text-xl lg:text-3xl text-center">
-              Fetured Bikes In This Year
-            </h2>
-            <small>Best bike collection</small>
-            <hr
-              class="w-20 mx-auto bg-red-500 border border-[rgb(231,111,81)]"
-            />
+            <h4 class="font-semibold mb-2">Company</h4>
+            <ul class="space-y-2 text-sm muted">
+              <li><a>About</a></li>
+              <li><a>Careers</a></li>
+              <li><a>Press</a></li>
+            </ul>
           </div>
-        </div>
-        <!-- Feature Bike -->
-        <div class="">
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 w-4/5 mx-auto pt-8"
-          >
-            <img src="images/others/feature-bike.png" alt="" />
-            <img src="images/others/feature-bike.png" alt="" />
-            <img src="images/others/feature-bike.png" alt="" />
-          </div>
-        </div>
-      </section>
-      <!-- Latest Bike Section -->
-      <section class="my-24">
-        <h2 class="text-xl md:text-3xl lg:text-5xl font-bold text-center">
-          Latest Bike
-        </h2>
-        <!-- bike cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <!-- card -01  -->
-          <div
-            class="card bg-base-100 shadow-sm md:shadow-md lg:shadow-lg p-2 overflow-hidden"
-          >
-            <figure>
-              <img src="images/others/latest1.png" alt="bike" />
-            </figure>
-            <div class="card-body space-y-3">
-              <h2 class="card-title font-semibold text-xl md:text-2xl">
-                Ducati XDIAVEL S-73
-              </h2>
-              <p class="text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus,
-                fermentum amet faucibus sed id nisi lectus at.
-              </p>
-              <div class="card-actions justify-start">
-                <button class="btn bg-bike-primary text-white px-3 py-5">
-                  Read More...
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- card -02  -->
-          <div
-            class="card bg-base-100 w-96 shadow-sm md:shadow-md lg:shadow-lg p-2 overflow-hidden"
-          >
-            <figure>
-              <img src="images/others/latest2.png" alt="bike" />
-            </figure>
-            <div class="card-body space-y-3">
-              <h2 class="card-title font-semibold text-xl md:text-2xl">
-                Motorcycles & Scooters
-              </h2>
-              <p class="text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus,
-                fermentum amet faucibus sed id nisi lectus at.
-              </p>
-              <div class="card-actions justify-start">
-                <button class="btn bg-bike-primary text-white px-3 py-5">
-                  Read More...
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- card -03  -->
-          <div
-            class="card bg-base-100 w-96 shadow-sm md:shadow-md lg:shadow-lg p-2 overflow-hidden"
-          >
-            <figure>
-              <img src="images/others/latest3.png" alt="bike" />
-            </figure>
-            <div class="card-body space-y-3">
-              <h2 class="card-title font-semibold text-xl md:text-2xl">
-                2021 Honda CBR500R
-              </h2>
-              <p class="text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus,
-                fermentum amet faucibus sed id nisi lectus at.
-              </p>
-              <div class="card-actions justify-start">
-                <button class="btn bg-bike-primary text-white px-3 py-5">
-                  Read More...
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Client Section  -->
-      <section class="my-24">
-        <h1
-          class="text-2xl md:text-3xl lg:text-5xl font-bold text-center py-10"
-        >
-          Happy <span class="text-orange-500">Clients says</span>
-        </h1>
-        <!-- Client -->
-        <div class="p-5">
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-4/5 mx-auto lg:w-full"
-          >
-            <!-- client 01 -->
-            <div class="text-center rounded-md border border-gray-300 p-10">
-              <!-- Client Avatar -->
-              <div class="space-y-3">
-                <div class="avatar">
-                  <div class="w-24 rounded-full">
-                    <img src="images/others/user-1.png" />
-                  </div>
-                </div>
 
-                <p class="text-gray-500 text-center">
-                  Slate helps you see how many more days you need to work to
-                  reach your financial goal for the month and year.
-                </p>
-                <!-- Ratting  -->
-                <div class="rating">
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="2 star"
-                    checked="checked"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="5 star"
-                  />
-                </div>
-                <h2 class="text-green-500 font-semibold">Regina Miles</h2>
-                <h3 class="font-bold">Banker</h3>
-              </div>
+          <div>
+            <h4 class="font-semibold mb-2">Download</h4>
+            <div class="flex flex-col gap-2">
+              <a class="btn btn-ghost btn-sm w-full">
+                <img
+                  src="./images/others/android.png"
+                  class="inline w-24 mr-2"
+                  alt="android"
+                />
+                Android</a
+              >
+              <a class="btn btn-ghost btn-sm w-full">
+                <img
+                  src="./images/others/ios.png"
+                  class="inline w-24 mr-2"
+                  alt="ios"
+                />
+                iOS</a
+              >
             </div>
-            <!-- client 02 -->
-            <div class="text-center rounded-md border border-gray-300 p-10">
-              <!-- Client Avatar -->
-              <div class="space-y-3">
-                <div class="avatar">
-                  <div class="w-24 rounded-full">
-                    <img src="images/others/user-2.png" />
-                  </div>
-                </div>
+          </div>
+        </div>
 
-                <p class="text-gray-500">
-                  Slate helps you see how many more days you need to work to
-                  reach your financial goal for the month and year.
-                </p>
-                <!-- Ratting  -->
-                <div class="rating">
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="2 star"
-                    checked="checked"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="5 star"
-                  />
-                </div>
-                <h2 class="text-green-500 font-semibold">Regina Miles</h2>
-                <h3 class="font-bold">Banker</h3>
-              </div>
+        <div class="border-t border-white/8 py-6">
+          <div
+            class="container-max flex flex-col md:flex-row items-center justify-between gap-4"
+          >
+            <div class="text-sm muted">
+              @ 2025 Bikar Zone - All rights reserved
             </div>
-            <!-- client 03 -->
-            <div class="text-center rounded-md border border-gray-300 p-10">
-              <!-- Client Avatar -->
-              <div class="space-y-3">
-                <div class="avatar">
-                  <div class="w-24 rounded-full">
-                    <img src="images/others/user-3.png" />
-                  </div>
-                </div>
+            <div class="text-sm muted">Made with LOVE in Bangladesh</div>
+          </div>
+        </div>
+      </footer>
+    </div>
 
-                <p class="text-gray-500">
-                  Slate helps you see how many more days you need to work to
-                  reach your financial goal for the month and year.
-                </p>
-                <!-- Ratting  -->
-                <div class="rating">
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="1 star"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="2 star"
-                    checked="checked"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    aria-label="5 star"
-                  />
-                </div>
-                <h2 class="text-green-500 font-semibold">Regina Miles</h2>
-                <h3 class="font-bold">Banker</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- FAQ Section -->
-      <section class="my-16">
-        <!-- FAQ title -->
-        <h1
-          class="text-2xl md:text-3xl lg:text-5xl font-bold text-center py-10"
-        >
-          Frequently Asked <span class="text-orange-500">Questions</span>
-        </h1>
-        <!-- FAQ Question container  -->
-        <!------------------------- I Don't Know Tailwind CSS and daisyUI Style Not Working----------------------------->
-        <div class="collapse collapse-arrow bg-base-100 border border-base-300">
-          <input type="radio" name="my-accordion-2" checked="checked" />
-          <div class="collapse-title font-semibold">
-            How do I create an account?
-          </div>
-          <div class="collapse-content text-sm">
-            Click the "Sign Up" button in the top right corner and follow the
-            registration process.
-          </div>
-        </div>
-        <div class="collapse collapse-arrow bg-base-100 border border-base-300">
-          <input type="radio" name="my-accordion-2" />
-          <div class="collapse-title font-semibold">
-            I forgot my password. What should I do?
-          </div>
-          <div class="collapse-content text-sm">
-            Click on "Forgot Password" on the login page and follow the
-            instructions sent to your email.
-          </div>
-        </div>
-        <div class="collapse collapse-arrow bg-base-100 border border-base-300">
-          <input type="radio" name="my-accordion-2" />
-          <div class="collapse-title font-semibold">
-            How do I update my profile information?
-          </div>
-          <div class="collapse-content text-sm">
-            Go to "My Account" settings and select "Edit Profile" to make
-            changes.
-          </div>
-        </div>
-      </section>
-    </main>
-    <!-- Footer Section -->
-    <footer class="text-white bg-black p-10">
-      <div
-        class="flex flex-col md:flex-row lg:flex-row items-center justify-center md:justify-evenly lg:justify-around"
-      >
-        <div class="mb-5">
-          <!-- nav title -->
-          <aside>
-            <p>
-              ACME Industries Ltd.
-              <br />
-              Providing reliable tech since 1992
-            </p>
-          </aside>
-        </div>
-        <div>
-          <!-- nav contact start -->
-          <nav>
-            <h6 class="footer-title">Get The App</h6>
-            <div class="grid grid-cols-1 gap-4">
-              <a
-                ><img class="w-36" src="./images/others/android.png" alt=""
-              /></a>
-              <a> <img class="w-36" src="./images/others/ios.png" alt="" /> </a>
-            </div>
-          </nav>
-          <!-- nav contact end -->
-        </div>
-      </div>
-    </footer>
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
   </body>
-  <!----------------------------- Finished Simple Tailwind CSS & Tailwind Kit daisyUI Basic Project  ---------------------------->
 </html>
