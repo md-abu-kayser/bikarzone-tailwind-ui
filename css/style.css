@@ -1,3 +1,6 @@
+/* all css here: */
+/* ------------------------------------------------ */
+
 :root {
   --max-width: 1200px;
 }
@@ -7,7 +10,7 @@ body {
     "Helvetica Neue", Arial;
 }
 
-/* Micro-layout helpers (vanilla CSS used sparingly) */
+/* Micro-layout */
 .container-max {
   max-width: var(--max-width);
   margin-left: auto;
@@ -127,7 +130,7 @@ body {
   font-weight: 600;
 }
 
-/* Subtle staggered reveal for cards */
+/* Subtle staggered reveal */
 .reveal-stagger {
   opacity: 0;
   transform: translateY(12px);
@@ -151,3 +154,5 @@ body {
   opacity: 0.12;
   mix-blend-mode: overlay;
 }
+
+/* ----------------------end----------------------- */
